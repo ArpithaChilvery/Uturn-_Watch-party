@@ -15,11 +15,11 @@ const io     = new Server(server, {
 });
 
 // ── Serve frontend ────────────────────────────────────────────────────────────
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname)));
 
 // Explicitly serve index.html on root
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Health check — Render pings this to keep server alive
@@ -27,7 +27,7 @@ app.get("/health", (req, res) => res.send("OK"));
 
 // Fallback — any unknown route serves index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // ── Room storage ─────────────────────────────────────────────────────────────
